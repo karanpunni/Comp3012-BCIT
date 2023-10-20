@@ -16,6 +16,6 @@ const pathProcessed = path.join(__dirname, "grayscaled");
 
 IOhandler.unzip(zipFilePath,pathUnzipped)
 .then(() => IOhandler.readDir('./unzipped'))
-.then(data => {Promise.all[IOhandler.grayScale(data[0],pathProcessed),IOhandler.grayScale(data[1],pathProcessed),IOhandler.grayScale(data[2],pathProcessed)]})
+.then((data) => {Promise.all[IOhandler.grayScale(data[0],pathProcessed),IOhandler.grayScale(data[1],pathProcessed),IOhandler.grayScale(data[2],pathProcessed)]})
 .then(()=>console.log("GrayScale conversion Complete"))
 .catch((err)=>console.log(err))
