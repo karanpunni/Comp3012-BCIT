@@ -3,6 +3,14 @@ const router = express.Router();
 import { ensureAuthenticated } from "../middleware/checkAuth";
 import { Store } from "express-session";
 
+router.post("/destroy", (req, res) => {
+  console.log("a")
+  var a=req.body;
+  req.sessionStore.destroy(a.sessionid)
+  console.log("deleted")
+  res.redirect("/admin")
+});
+
 router.get("/", (req, res) => {
   res.send("welcome");
 });
@@ -14,11 +22,6 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
 });
 
 router.get("/admin", (req, res) => {
-
-  
-
-
-
   if (req.user && req.user.role === "admin") {
     if (req.sessionStore.all) {
       let a: {}[] = [];
@@ -38,16 +41,10 @@ router.get("/admin", (req, res) => {
             // console.log(`User ID for session ${sessionId}: ${passportValue}`);
           }
 
-
-          function destroySession(id:string){
-            // console.log("id")
-            req.sessionStore.destroy(id)
-          }
-
           res.render("admin", {
             user: req.user,
             data: a,
-            destroy:(destroySession)
+            
           });
 
           // console.log(a);

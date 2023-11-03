@@ -1,9 +1,16 @@
 <h1 class="mt-4">Dashboard</h1>
 <p class="lead mb-3">admin <%= user.name %></p>
-<% for (var i = 0; i < data.length; i++) { %>
-  <p>SessionID: <%= data[i].sessionID %></p>
-  <p>UserId: <%= data[i].userid %></p>
-  <button onclick="destroy('<%= data[i].sessionID %>')">Delete</button>
-  <br/><br/>
-<% } %>
+<hr>
+<% for (var i =0; i <data.length;  i++ ) { %>
+  <form action="/destroy" method="post">
+    <input name="sessionid" id="sessionid" hidden value="<%= data[i].sessionID %>" />
+    <p>SessionID: <%= data[i].sessionID %></p>
+    <p>UserId: <%= data[i].userid %></p>
+    <button type="submit">Destroy</button>
+  </form>
+  <hr>
+  <% } %>
 <a href="/auth/logout" class="btn btn-secondary">Logout</a>
+
+
+
